@@ -1,8 +1,7 @@
-import { Button, Fab, TextField } from '@mui/material';
 import './App.css';
 import { useState } from 'react';
-import { AddIcCallOutlined } from '@mui/icons-material';
-import { EditNotifications } from '@mui/icons-material';
+import AddTodo from './componetns/AddTodo/AddTodo';
+import TaskList from './componetns/TaskList/TaskList';
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -23,46 +22,8 @@ function App() {
   return (
     <div className="app">
       <h1>Todo</h1>
-      <div className="appwarapper">
-        <TextField
-          id="outlined-basic"
-          label="добавить"
-          variant="outlined"
-          value={task}
-          placeholder="добавить задачу"
-          onChange={(e) => setTask(e.target.value)}
-          size="small"
-        />
-
-        <Button
-          className="btnAdd"
-          onClick={addTodo}
-          size="small"
-          variant="contained"
-          color="success"
-        >
-          Добавить
-        </Button>
-      </div>
-      <ul className="list">
-        {todos.map((todo) => (
-          <li className="listItem" key={todo.id}>
-            <div className="title">
-              {todo.title}
-              <div className="btnDelete">
-                <Button
-                  onClick={() => deleteTodo(todo.id)}
-                  size="small"
-                  variant="outlined"
-                  color="error"
-                >
-                  удалить
-                </Button>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <AddTodo task={task} setTask={setTask} addTodo={addTodo} />
+      <TaskList deleteTodo={deleteTodo} todos={todos} />
     </div>
   );
 }
