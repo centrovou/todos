@@ -1,20 +1,20 @@
 import './App.css';
 import { useState } from 'react';
-import AddTodo from './componetns/AddTodo/AddTodo';
-import TaskList from './componetns/TaskList/TaskList';
-
+import AddTodo from './components/AddTodo/AddTodo';
+import TaskList from './components/TaskList/TaskList';
+import { v4 as uuidv4 } from 'uuid';
 function App() {
   const [todos, setTodos] = useState([]);
   const [task, setTask] = useState('');
 
-  // добавить задачу
+  // add task
   const addTodo = () => {
     setTask('');
-    const newId = todos.length + 1; // генирация id
+    const newId = uuidv4(); //  generation id
     setTodos([...todos, { id: newId, title: task }]);
   };
 
-  // удалить
+  // delete
   const deleteTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
